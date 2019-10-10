@@ -1,0 +1,34 @@
+def Bin(s):
+
+    for i in range(len(s)):
+        s[i] = bin(s[i])[2:]
+
+        if len(s[i]) > 7:
+            raise ValueError
+
+        while len(s[i]) < 7:
+            s[i] = '0' + s[i]
+
+    return s
+
+
+def text(s):
+    n = 7
+    text = []
+
+    for i in range(0, len(s), n):
+        text.append(s[i:i + n])
+
+    for i in range(len(text)):
+        text[i] = chr(int(text[i], base=2))
+
+    return ''.join(text)
+
+
+act = input()
+
+if act == 'bin':
+    print(*Bin(list(map(ord, input()))), sep='')
+
+elif act == 'text':
+    print(text(input()))
